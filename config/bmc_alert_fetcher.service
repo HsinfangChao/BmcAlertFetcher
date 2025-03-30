@@ -1,0 +1,14 @@
+[Unit]  
+Description=bmc_alert_fetcher
+After=syslog.target network.target 
+  
+[Service]   
+User=bmc-alert-fetcher
+Group=bmc-alert-fetcher
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/BMCAlertFetcher/baf.py
+WorkingDirectory=/usr/local/
+Restart=on-failure
+  
+[Install]  
+WantedBy=multi-user.target
