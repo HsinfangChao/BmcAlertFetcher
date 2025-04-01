@@ -14,8 +14,7 @@ However, the limitation of using ipmitool sel to monitor hardware alert in physi
 Inspur NF5688-M7
 
 ### Installation
-pip install -r requirements.txt
-
+bash install.sh
 ### Config
 Configure BMC IP, BMC password, and webhook URL in config/bmc_info.yml
  
