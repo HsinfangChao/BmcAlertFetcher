@@ -23,7 +23,7 @@ def get_alert_info(bmc_ip,user_name,password):
             sb.type("#userid", user_name)  
             sb.type("#password", password) 
             sb.click("#btn-login")
-            sb.wait_for_element_present("#download")
+            sb.wait_for_element_present("#download",timeout=30)
             seleniumbase_cookies=sb.get_cookies()
             logger.info(f"seleniumbase_cookies: {seleniumbase_cookies}")
             session = requests.Session()
@@ -32,7 +32,7 @@ def get_alert_info(bmc_ip,user_name,password):
                 domain = cookie.get('domain') or bmc_ip
                 session.cookies.set(cookie['name'], cookie['value'], domain=domain)
             current_alert_url = f"http://{bmc_ip}/#logs/alertLog"  
-            response = session.get(current_alert_url,verify=False)
+            response = session.get(current_alert_url,verify=False,timeout=10)
             if response.status_code != 200:
                 logger.info(f"response content() {response.content.decode('utf-8')}")
                 logger.info(f"response status_code {response.status_code}")
